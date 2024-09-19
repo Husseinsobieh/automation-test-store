@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AccountPage;
 import pages.LoginPage;
+import pages.LogoffPage;
 
 import java.util.HashMap;
 
@@ -38,5 +39,18 @@ public class LoginTests extends BaseTests {
         loginPage.clickLoginBtn();
         Assert.assertTrue(loginPage.getErrorAlert().endsWith("Error: Incorrect login or password provided."),
                  "invalid login evaluation");
+    }
+
+    @Description("given I'm logged in, when I click on logoff button, then I should logoff successfully")
+    @Story("login")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "loginDataProvider")
+    public void testLogoff(HashMap<String, String> loginData){
+        LoginPage loginPage = homePage.clickLoginBtn();
+        loginPage.setLoginNameInput(loginData.get("Login Name"));
+        loginPage.setPasswordInput(loginData.get("Password"));
+        AccountPage accountPage = loginPage.clickLoginBtn();
+        LogoffPage logoffPage = accountPage.clickLogoffBtn();
+        Assert.assertTrue(logoffPage.getLogoffMessage().endsWith("ACCOUNT LOGOUT"), "incomplete logoff");
     }
 }
