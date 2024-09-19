@@ -9,7 +9,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import pages.AccountPage;
 import pages.HomePage;
+import pages.LoginPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,10 +38,10 @@ public class BaseTests {
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         return options;
     }
-//    @AfterClass
-//    public void tearDown(){
-//        driver.quit();
-//    }
+    @AfterClass
+    public void tearDown(){
+        driver.quit();
+    }
     @DataProvider(name = "loginDataProvider")
     public Object[] loginData() throws IOException {
         HashMap<String, String> map1 = new ObjectMapper().
@@ -55,5 +57,12 @@ public class BaseTests {
                         , new TypeReference<HashMap<String, String>>() {});
 
         return new Object[]{map1};
+    }
+    protected void login(){
+        LoginPage loginPage = homePage.clickLoginBtn();
+        loginPage.setLoginNameInput("hussein.sobieh");
+        loginPage.setPasswordInput("Test@123");
+        AccountPage accountPage = loginPage.clickLoginBtn();
+        goHome();
     }
 }

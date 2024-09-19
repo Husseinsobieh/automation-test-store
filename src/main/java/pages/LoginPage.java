@@ -9,6 +9,7 @@ public class LoginPage {
     private By passwordInput = By.id("loginFrm_password");
     private By loginBtn = By.cssSelector("button[title='Login']");
     private By registerPageBtn = By.cssSelector("button[title='Continue']");
+    private By errorAlert = By.className("alert-error");
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
@@ -17,6 +18,7 @@ public class LoginPage {
     public void setLoginNameInput(String loginName){
         driver.findElement(loginNameInput).sendKeys(loginName);
     }
+
     public void setPasswordInput(String password){
         driver.findElement(passwordInput).sendKeys(password);
     }
@@ -27,5 +29,8 @@ public class LoginPage {
     public RegisterPage clickRegisterPageBtn(){
         driver.findElement(registerPageBtn).click();
         return new RegisterPage(driver);
+    }
+    public String getErrorAlert() {
+        return driver.findElement(errorAlert).getText();
     }
 }

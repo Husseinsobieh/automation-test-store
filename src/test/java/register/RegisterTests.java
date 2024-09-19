@@ -1,6 +1,10 @@
 package register;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AccountCreatedPage;
@@ -12,6 +16,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class RegisterTests extends BaseTests {
+    @Description("given I'm on the login page, when I enter valid login data and click continue, " +
+            "then I am successfully logged in")
+    @Story("register")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "registerDataProvider")
     public void testValidRegister(HashMap<String, String> registerData) throws InterruptedException {
         String date = new SimpleDateFormat("ddMyyyyhhmmss").format(new Date());
@@ -45,5 +53,16 @@ public class RegisterTests extends BaseTests {
 
         Assert.assertEquals(accountCreatedPage.getAccountCreatedMessage(),
                 "YOUR ACCOUNT HAS BEEN CREATED!", "Invalid register");
+    }
+    @Description("given I'm on the login page, when I enter invalid login data and click continue, " +
+            "then I should get an error message")
+    @Story("register")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test
+    public void testInvalidRegister(){
+        RegisterPage registerPage = homePage.clickLoginBtn().clickRegisterPageBtn();
+        registerPage.clickToAgreePrivacyPolicy();
+        registerPage.clickRegisterBtn();
+        Assert.assertTrue(!registerPage.getErrorAlert().isEmpty(), "Invalid register evaluation");
     }
 }
