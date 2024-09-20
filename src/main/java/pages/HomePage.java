@@ -18,4 +18,8 @@ public class HomePage {
     public void clickLogoff(){
         driver.findElement(logoffBtn).click();
     }
+
+    public void scrollInto (){
+
+    }
 }

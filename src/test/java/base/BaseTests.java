@@ -2,6 +2,7 @@ package base;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,7 +23,7 @@ public class BaseTests {
     protected HomePage homePage;
     @BeforeClass
     public void setup(){
-        System.setProperty("webdriver.chrome.driver", "resources/drivers/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(getChromeOptions());
         goHome();
         driver.manage().window().maximize();
@@ -64,5 +65,9 @@ public class BaseTests {
         loginPage.setPasswordInput("Test@123");
         AccountPage accountPage = loginPage.clickLoginBtn();
         goHome();
+    }
+    protected void logOff(){
+        goHome();
+        homePage.clickLogoff();
     }
 }
