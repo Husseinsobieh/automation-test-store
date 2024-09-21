@@ -53,6 +53,7 @@ public class RegisterTests extends BaseTests {
 
         Assert.assertEquals(accountCreatedPage.getAccountCreatedMessage(),
                 "YOUR ACCOUNT HAS BEEN CREATED!", "Invalid register");
+        logOff();
     }
     @Description("given I'm on the login page, when I enter invalid login data and click continue, " +
             "then I should get an error message")
@@ -64,5 +65,6 @@ public class RegisterTests extends BaseTests {
         registerPage.clickToAgreePrivacyPolicy();
         registerPage.clickRegisterBtn();
         Assert.assertTrue(!registerPage.getErrorAlert().isEmpty(), "Invalid register evaluation");
+        logOff();
     }
 }

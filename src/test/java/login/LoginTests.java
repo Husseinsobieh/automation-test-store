@@ -25,6 +25,7 @@ public class LoginTests extends BaseTests {
         loginPage.setPasswordInput(loginData.get("Password"));
         AccountPage accountPage = loginPage.clickLoginBtn();
         Assert.assertTrue(accountPage.getWelcomeMessage().contains("Welcome back"),"Invalid login");
+        logOff();
     }
 
     @Description("given I'm on the signup page, " +
@@ -39,6 +40,7 @@ public class LoginTests extends BaseTests {
         loginPage.clickLoginBtn();
         Assert.assertTrue(loginPage.getErrorAlert().endsWith("Error: Incorrect login or password provided."),
                  "invalid login evaluation");
+        logOff();
     }
 
     @Description("given I'm logged in, when I click on logoff button, then I should logoff successfully")
