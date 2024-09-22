@@ -1,6 +1,10 @@
 package product;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.Book1Page;
@@ -8,6 +12,9 @@ import pages.BooksPage;
 import pages.CartPage;
 
 public class ProductTests extends BaseTests {
+    @Description("given I'm on the product page, when i click add to cart, then the product is added to the cart")
+    @Story("product")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAddToCart() {
         login();
@@ -19,6 +26,10 @@ public class ProductTests extends BaseTests {
         logOff();
     }
 
+    @Description("given I'm on the product page, when i click change the quantity," +
+            " then the product's total price is changed to the appropriate price")
+    @Story("product")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void testAddToCart2() throws InterruptedException {
         String quantity = "5";
