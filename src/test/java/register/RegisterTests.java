@@ -5,6 +5,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AccountCreatedPage;
@@ -21,7 +23,7 @@ public class RegisterTests extends BaseTests {
     @Story("register")
     @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "registerDataProvider")
-    public void testValidRegister(HashMap<String, String> registerData) throws InterruptedException {
+    public void testValidRegister(HashMap<String, String> registerData) {
         String date = new SimpleDateFormat("ddMyyyyhhmmss").format(new Date());
         String email = registerData.get("E-Mail") + date + "@gmail.com";
         String loginName = registerData.get("Login Name") + date;
@@ -35,7 +37,6 @@ public class RegisterTests extends BaseTests {
         registerPage.setAddress1Input(registerData.get("Address 1"));
         registerPage.setCityInput(registerData.get("City"));
         registerPage.setCountryInput(registerData.get("Country"));
-
         registerPage.setRegionInput(registerData.get("Region"));
         registerPage.setPostcodeInput(registerData.get("ZIP Code"));
         registerPage.setLoginNameInput(loginName);
@@ -65,6 +66,5 @@ public class RegisterTests extends BaseTests {
         registerPage.clickToAgreePrivacyPolicy();
         registerPage.clickRegisterBtn();
         Assert.assertTrue(!registerPage.getErrorAlert().isEmpty(), "Invalid register evaluation");
-        logOff();
     }
 }

@@ -6,7 +6,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import utils.Waiter;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -64,14 +66,14 @@ public class RegisterPage {
         return new Select(driver.findElement(regionInput));
     }
     public void setRegionInput(String region){
+        Waiter.waitFor(driver).until(ExpectedConditions.textToBePresentInElement(driver.findElement(regionInput), region));
         findRegionInput().selectByVisibleText(region);
     }
     private Select findCountryInput(){
         return new Select(driver.findElement(countryInput));
     }
-    public void setCountryInput(String country) throws InterruptedException {
+    public void setCountryInput(String country) {
         findCountryInput().selectByVisibleText(country);
-        Thread.sleep(1000);
     }
     public void clickToAgreePrivacyPolicy(){
         driver.findElement(privacyPolicyBtn).click();

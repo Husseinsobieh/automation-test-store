@@ -40,7 +40,6 @@ public class LoginTests extends BaseTests {
         loginPage.clickLoginBtn();
         Assert.assertTrue(loginPage.getErrorAlert().endsWith("Error: Incorrect login or password provided."),
                  "invalid login evaluation");
-        logOff();
     }
 
     @Description("given I'm logged in, when I click on logoff button, then I should logoff successfully")

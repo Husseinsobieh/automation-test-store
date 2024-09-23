@@ -3,6 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.Waiter;
+
+import java.util.function.Function;
 
 public class Book1Page {
     private WebDriver driver;
@@ -25,6 +29,11 @@ public class Book1Page {
         quantityInput.sendKeys(quantity);
     }
     public double getTotalPrice(){
+        WebElement originalPrice = driver.findElement(productPrice);
+
+        Waiter.waitFor(driver).until((Function<WebDriver, Boolean>) d ->
+                !driver.findElement(totalPrice).getText().equals(originalPrice));
+
         String price = driver.findElement(totalPrice).getText();
         return Double.parseDouble(price.replace("$", ""));
     }
