@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Arthur/Desktop/7s/Java/Learning/AutomationTestStore">
+        <classes>
+            <class name="checkout.CheckoutTests">
+                <methods>
+                    <include name="testsCheckoutFunction"/>
+                </methods>
+            </class>
+            <class name="e2e.E2ETests">
+                <methods>
+                    <include name="testsCompleteFunctionality"/>
+                </methods>
+            </class>
+            <class name="login.LoginTests">
+                <methods>
+                    <include name="testValidLogin"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testLogoff"/>
+                </methods>
+            </class>
+            <class name="product.ProductTests">
+                <methods>
+                    <include name="testAddToCart"/>
+                    <include name="testAddToCart2"/>
+                </methods>
+            </class>
+            <class name="register.RegisterTests">
+                <methods>
+                    <include name="testValidRegister"/>
+                    <include name="testInvalidRegister"/>
+                </methods>
+            </class>
+            <class name="wishlist.WishlistTests">
+                <methods>
+                    <include name="testsWishlist"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -31,11 +31,12 @@ public class ProductTests extends BaseTests {
     @Story("product")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void testAddToCart2() {
+    public void testAddToCart2() throws InterruptedException {
         String quantity = "5";
         login();
         Book1Page book1Page = homePage.clickBooksBtn().clickBookItem();
         book1Page.setProductQuantity(quantity);
+        Thread.sleep(1000);
         double totalPrice = Double.parseDouble(quantity) * book1Page.getProductPrice();
         Assert.assertEquals(book1Page.getTotalPrice(), totalPrice, "invalid price evaluation");
         book1Page.clickAddToCartBtn();
