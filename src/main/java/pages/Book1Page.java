@@ -14,6 +14,8 @@ public class Book1Page {
     private By productQuantity = By.id("product_quantity");
     private By totalPrice = By.className("total-price");
     private By addToCartBtn = By.partialLinkText("Add to Cart");
+    private By wishlistBtn = By.className("wishlist_add");
+    private By itemName = By.className("bgnone");
 
     public Book1Page(WebDriver driver) {
         this.driver = driver;
@@ -40,5 +42,11 @@ public class Book1Page {
     public CartPage clickAddToCartBtn(){
         driver.findElement(addToCartBtn).click();
         return new CartPage(driver);
+    }
+    public void clickWishlistBtn(){
+        driver.findElement(wishlistBtn).click();
+    }
+    public String getItemName(){
+        return driver.findElement(itemName).getText();
     }
 }
